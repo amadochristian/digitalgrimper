@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grimper.Digital × American Texas Burger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Paleta American Texas — vermelho + âmbar + couro */
+    --client-50:   #fff7ed;
+    --client-100:  #ffedd5;
+    --client-200:  #fed7aa;
+    --client-400:  #fb923c;
+    --client-500:  #dc2626;
+    --client-600:  #b91c1c;
+    --client-700:  #7f1d1d;
+    --client-amber: #d97706;
+    --client-amber-light: #fbbf24;
+    --client-dark-bg: #1c0a00;
+
+    --grimper-blue:       #3b82f6;
+    --grimper-blue-light: #60a5fa;
+    --grimper-dark:       #0d1b2a;
+    --grimper-mid:        #2d4158;
+    --grimper-muted:      #5a7491;
+    --grimper-frost:      #f0f4f8;
+    --font-display: 'Fraunces', serif;
+    --font-body:    'DM Sans', sans-serif;
+
+    --accent:       var(--client-500);
+    --accent-light: var(--client-400);
+    --accent-dark:  var(--client-700);
+    --accent-bg:    var(--client-50);
+    --accent-border: var(--client-200);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: #f8fafc; color: var(--grimper-dark); line-height: 1.6; }
+
+  .hero {
+    min-height: 100vh; background: var(--client-dark-bg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 80px 40px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 15% 20%, rgba(220,38,38,0.28) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 85% 15%, rgba(217,119,6,0.2) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 60% at 50% 95%, rgba(220,38,38,0.18) 0%, transparent 55%);
+    animation: heroAurora 16s ease-in-out infinite alternate;
+  }
+  @keyframes heroAurora { 0% { transform: scale(1); } 100% { transform: scale(1.05) translate(1%,1%); } }
+  .hero-inner { position: relative; z-index: 2; max-width: 740px; }
+
+  .hero-collab {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px; padding: 8px 20px;
+    font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 40px;
+  }
+  .hero-collab .grimper-name { color: var(--grimper-blue-light); }
+  .hero-collab .client-name  { color: #fbbf24; }
+
+  .client-logo-wrap {
+    width: 110px; height: 110px; border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(220,38,38,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 32px; font-size: 3.5rem;
+    box-shadow: 0 0 40px rgba(220,38,38,0.2);
+  }
+
+  .show-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(217,119,6,0.15); border: 1px solid rgba(217,119,6,0.3);
+    border-radius: 100px; padding: 6px 16px;
+    font-size: 0.78rem; font-weight: 600; color: #fbbf24;
+    margin-bottom: 20px;
+  }
+
+  .hero-for { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(255,255,255,0.3); font-weight: 500; margin-bottom: 12px; }
+  .hero-client-name { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 5.5vw, 4rem); color: #fff; letter-spacing: -0.02em; line-height: 1; margin-bottom: 12px; }
+  .hero-client-name em { font-style: italic; color: #fbbf24; }
+  .hero-tagline { font-size: clamp(0.9rem, 2vw, 1.05rem); color: rgba(255,255,255,0.4); font-weight: 300; margin-bottom: 56px; line-height: 1.7; }
+  .hero-meta { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.28); font-weight: 500; margin-bottom: 3px; }
+  .hero-meta-value { font-family: var(--font-display); font-size: 0.9rem; color: rgba(255,255,255,0.65); font-weight: 400; }
+
+  .page { max-width: 1000px; margin: 0 auto; padding: 0 40px 120px; }
+  section { padding: 96px 0 0; }
+  .sec-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+  .sec-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -0.02em; color: var(--grimper-dark); line-height: 1.1; margin-bottom: 14px; }
+  .sec-title span { color: var(--accent); }
+  .sec-body { font-size: 1rem; color: var(--grimper-muted); font-weight: 300; max-width: 560px; line-height: 1.75; margin-bottom: 48px; }
+  .divider { width: 100%; height: 1px; background: linear-gradient(to right, rgba(220,38,38,0.15), transparent); margin-bottom: 48px; }
+
+  .status-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; margin-bottom: 40px; background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.22); color: #92400e; }
+  .status-badge .status-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+  .diag-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+  .diag-card { background: white; border-radius: 20px; padding: 28px 24px; border: 1px solid rgba(220,38,38,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .diag-card-icon { font-size: 1.5rem; margin-bottom: 14px; }
+  .diag-card-title { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--grimper-dark); margin-bottom: 12px; }
+  .diag-item { display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: var(--grimper-muted); line-height: 1.5; margin-bottom: 8px; font-weight: 300; }
+  .diag-item:last-child { margin-bottom: 0; }
+  .diag-item .di { font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+  .diag-item.bad  .di { color: #ef4444; }
+  .diag-item.warn .di { color: #f59e0b; }
+  .diag-item.ok   .di { color: #22c55e; }
+
+  /* destaque show ao vivo */
+  .show-highlight {
+    background: linear-gradient(135deg, #1c0a00, #3d1400);
+    border: 1px solid rgba(220,38,38,0.25);
+    border-radius: 20px; padding: 32px 36px; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .show-icon { font-size: 3rem; flex-shrink: 0; }
+  .show-title { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: white; margin-bottom: 6px; }
+  .show-body { font-size: 0.88rem; color: rgba(255,255,255,0.5); font-weight: 300; line-height: 1.6; }
+  .show-tag { display: inline-block; margin-top: 10px; background: rgba(220,38,38,0.2); border: 1px solid rgba(220,38,38,0.35); color: #fca5a5; border-radius: 100px; padding: 4px 14px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .brecha-list { background: #fff7ed; border: 1px solid #fed7aa; border-left: 3px solid var(--client-amber); border-radius: 16px; padding: 24px 28px; }
+  .brecha-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 600; color: var(--client-amber); margin-bottom: 16px; }
+  .brecha-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: var(--grimper-mid); line-height: 1.55; margin-bottom: 10px; font-weight: 300; }
+  .brecha-item:last-child { margin-bottom: 0; }
+  .brecha-num { width: 22px; height: 22px; background: #fed7aa; color: var(--client-amber); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+
+  .campaign-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .camp-block { background: white; border-radius: 20px; padding: 32px 28px; border: 1px solid rgba(220,38,38,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+  .camp-block.full { grid-column: span 2; }
+  .camp-block-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.16em; font-weight: 600; color: var(--grimper-muted); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .camp-block-label::after { content: ''; flex: 1; height: 1px; background: rgba(220,38,38,0.08); }
+  .camp-block-title { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--grimper-dark); margin-bottom: 16px; }
+  .audience-pill { display: inline-block; background: var(--accent-bg); border: 1px solid var(--accent-border); color: var(--accent-dark); border-radius: 100px; padding: 5px 14px; font-size: 0.78rem; font-weight: 500; margin: 3px 3px 3px 0; }
+  .conjuntos { display: flex; flex-direction: column; gap: 12px; }
+  .conjunto { background: var(--grimper-frost); border-radius: 12px; padding: 16px 18px; border: 1px solid rgba(220,38,38,0.08); }
+  .conjunto.semanal { background: #fff7ed; border: 1px solid #fed7aa; }
+  .conjunto-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: var(--grimper-muted); margin-bottom: 6px; }
+  .conjunto.semanal .conjunto-label { color: var(--client-amber); }
+  .conjunto-name { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--grimper-dark); margin-bottom: 4px; }
+  .conjunto-desc { font-size: 0.8rem; color: var(--grimper-muted); font-weight: 300; line-height: 1.5; }
+  .criativo-box { background: linear-gradient(135deg, #fff7ed, rgba(255,255,255,0.5)); border: 1px solid #fed7aa; border-radius: 16px; padding: 24px; }
+  .criativo-format { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: var(--client-amber); margin-bottom: 10px; }
+  .criativo-hook { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--grimper-dark); font-style: italic; line-height: 1.35; margin-bottom: 12px; }
+  .criativo-desc { font-size: 0.82rem; color: var(--grimper-muted); font-weight: 300; line-height: 1.6; }
+  .orcamento-badge { display: flex; align-items: center; gap: 16px; background: var(--client-dark-bg); color: white; border-radius: 16px; padding: 20px 24px; margin-top: 16px; }
+  .orcamento-value { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: #fbbf24; }
+  .orcamento-value span { font-size: 0.82rem; color: rgba(255,255,255,0.4); font-family: var(--font-body); font-weight: 300; margin-left: 6px; }
+
+  .metrics-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 20px; }
+  .metric-card { background: white; border-radius: 20px; padding: 28px 22px; border: 1px solid rgba(220,38,38,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.04); text-align: center; transition: transform 0.2s; }
+  .metric-card:hover { transform: translateY(-4px); }
+  .metric-icon { font-size: 1.6rem; margin-bottom: 12px; display: block; }
+  .metric-value { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; color: var(--grimper-dark); letter-spacing: -0.02em; margin-bottom: 4px; }
+  .metric-label { font-size: 0.72rem; color: var(--grimper-muted); font-weight: 400; line-height: 1.4; }
+  .metric-trend { font-size: 0.72rem; font-weight: 600; color: #22c55e; margin-top: 6px; }
+  .metric-bar-wrap { height: 3px; background: rgba(220,38,38,0.08); border-radius: 2px; margin-top: 12px; overflow: hidden; }
+  .metric-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--client-amber)); border-radius: 2px; }
+  .potential-note { background: rgba(220,38,38,0.04); border: 1px solid rgba(220,38,38,0.12); border-left: 3px solid var(--accent); border-radius: 12px; padding: 16px 20px; font-size: 0.82rem; color: var(--grimper-mid); font-weight: 300; line-height: 1.65; }
+
+  /* ticket por mesa */
+  .ticket-bar { background: linear-gradient(135deg, var(--client-dark-bg), #3d1400); border-radius: 20px; padding: 28px 32px; margin-top: 20px; display: flex; align-items: center; gap: 24px; border: 1px solid rgba(220,38,38,0.2); }
+  .ticket-icon { font-size: 2.5rem; flex-shrink: 0; }
+  .ticket-title { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: white; margin-bottom: 4px; }
+  .ticket-body { font-size: 0.82rem; color: rgba(255,255,255,0.45); font-weight: 300; line-height: 1.5; }
+  .ticket-value { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; color: #fbbf24; margin-top: 4px; }
+
+  .checklist-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .check-item { background: white; border-radius: 16px; padding: 20px 22px; border: 1px solid rgba(220,38,38,0.08); box-shadow: 0 2px 8px rgba(0,0,0,0.03); display: flex; align-items: flex-start; gap: 14px; }
+  .check-prio { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+  .prio-high   { background: #fee2e2; color: #ef4444; }
+  .prio-medium { background: #fef3c7; color: #d97706; }
+  .prio-low    { background: #dcfce7; color: #16a34a; }
+  .check-title { font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; color: var(--grimper-dark); margin-bottom: 3px; }
+  .check-desc { font-size: 0.78rem; color: var(--grimper-muted); font-weight: 300; line-height: 1.5; }
+
+  .steps-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; position: relative; }
+  .steps-row::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px; background: linear-gradient(to right, transparent, rgba(220,38,38,0.2), transparent); z-index: 0; }
+  .step { background: white; border-radius: 20px; padding: 28px 22px; border: 1px solid rgba(220,38,38,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.04); text-align: center; position: relative; z-index: 1; }
+  .step-num { width: 40px; height: 40px; background: var(--client-dark-bg); color: #fbbf24; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 0.9rem; margin: 0 auto 16px; }
+  .step-icon { font-size: 1.4rem; margin-bottom: 12px; display: block; }
+  .step-title { font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; color: var(--grimper-dark); margin-bottom: 8px; }
+  .step-desc { font-size: 0.78rem; color: var(--grimper-muted); font-weight: 300; line-height: 1.55; }
+
+  .cta-block { background: var(--client-dark-bg); border-radius: 28px; padding: 64px 56px; text-align: center; margin-top: 96px; position: relative; overflow: hidden; }
+  .cta-block::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 20%, rgba(220,38,38,0.22) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(217,119,6,0.18) 0%, transparent 50%); pointer-events: none; }
+  .cta-inner { position: relative; z-index: 2; }
+  .cta-for { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(255,255,255,0.3); font-weight: 500; margin-bottom: 16px; }
+  .cta-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: white; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
+  .cta-title em { font-style: italic; color: #fbbf24; }
+  .cta-sub { font-size: 1rem; color: rgba(255,255,255,0.45); font-weight: 300; max-width: 480px; margin: 0 auto 40px; line-height: 1.7; }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .btn-wa { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: white; text-decoration: none; font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; padding: 14px 28px; border-radius: 14px; transition: all 0.25s; box-shadow: 0 6px 20px rgba(37,211,102,0.3); }
+  .btn-wa:hover { background: #1ebe5a; transform: translateY(-2px); }
+  .btn-email { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.75); text-decoration: none; font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; padding: 14px 28px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); transition: all 0.25s; }
+  .btn-email:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+  .cta-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); font-weight: 300; }
+
+  .page-footer { margin-top: 64px; padding: 32px 0; border-top: 1px solid rgba(220,38,38,0.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: var(--grimper-dark); }
+  .footer-logo span { color: var(--grimper-blue); }
+  .footer-note { font-size: 0.75rem; color: var(--grimper-muted); font-weight: 300; font-style: italic; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .page { padding: 0 20px 80px; }
+    .diag-grid, .campaign-layout, .checklist-grid { grid-template-columns: 1fr; }
+    .camp-block.full { grid-column: span 1; }
+    .metrics-grid { grid-template-columns: repeat(2,1fr); }
+    .steps-row { grid-template-columns: repeat(2,1fr); }
+    .steps-row::before { display: none; }
+    .cta-block { padding: 40px 28px; }
+    .show-highlight, .ticket-bar { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-collab">
+      <span class="grimper-name">Grimper.Digital</span>
+      <span style="color:rgba(255,255,255,0.2)">×</span>
+      <span class="client-name">American Texas Burger</span>
+    </div>
+    <div class="client-logo-wrap">🤠</div>
+    <div class="show-badge">🎤 Show ao vivo todo sábado — oportunidade semanal</div>
+    <div class="hero-for">Proposta exclusiva para</div>
+    <div class="hero-client-name">American <em>Texas</em></div>
+    <p class="hero-tagline">
+      Um conceito que se vende sozinho — falta só<br>
+      aparecer pra quem ainda não descobriu o lugar.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-label">Preparado por</div><div class="hero-meta-value">Christian Amado</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">Data</div><div class="hero-meta-value">Março 2026</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">Segmento</div><div class="hero-meta-value">Gastrobar & Hamburgeria</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">Cidade</div><div class="hero-meta-value">Pinhalzinho, SP</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <section class="reveal">
+    <div class="sec-label">01 · Diagnóstico</div>
+    <h2 class="sec-title">Como o <span>American Texas</span> está hoje</h2>
+    <p class="sec-body">Analisei o Instagram, o GMN e o Linktree. Negócio com conceito forte — e um ativo digital que ninguém está aproveitando.</p>
+    <div class="divider"></div>
+
+    <div class="show-highlight">
+      <div class="show-icon">🎤</div>
+      <div>
+        <div class="show-title">Show ao vivo todo sábado — ativo de campanha ignorado</div>
+        <div class="show-body">Pouquíssimos bares no interior de SP têm programação semanal ao vivo. Isso é urgência renovável: toda semana tem um motivo novo pra anunciar, um gancho de conteúdo pago, uma razão concreta pra pessoa sair de casa. E está sendo desperdiçado sem nenhum anúncio.</div>
+        <span class="show-tag">🔑 Principal gancho da campanha</span>
+      </div>
+    </div>
+
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      🟠 Nível 2 — Ativo presencialmente, invisível digitalmente
+    </div>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="diag-card-icon">📷</div>
+        <div class="diag-card-title">Instagram</div>
+        <div class="diag-item ok"><span class="di">✓</span> Perfil ativo com identidade temática</div>
+        <div class="diag-item ok"><span class="di">✓</span> Bio bem escrita com conceito claro</div>
+        <div class="diag-item ok"><span class="di">✓</span> Linktree no lugar de site — funcional</div>
+        <div class="diag-item bad"><span class="di">✗</span> Zero anúncios no Meta Ads</div>
+        <div class="diag-item warn"><span class="di">!</span> Show de sábado sem campanha semanal</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-icon">🗺️</div>
+        <div class="diag-card-title">Google Meu Negócio</div>
+        <div class="diag-item ok"><span class="di">✓</span> 4.7 com 71 avaliações — muito sólido</div>
+        <div class="diag-item ok"><span class="di">✓</span> Horário atualizado, aberto todos os dias</div>
+        <div class="diag-item bad"><span class="di">✗</span> Sem fotos do espaço interno temático</div>
+        <div class="diag-item warn"><span class="di">!</span> Diferencial visual (ambiente Texas) invisível</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-icon">💻</div>
+        <div class="diag-card-title">Site & Captação</div>
+        <div class="diag-item warn"><span class="di">!</span> Linktree — funcional mas sem identidade</div>
+        <div class="diag-item bad"><span class="di">✗</span> Sem site profissional ou cardápio visual</div>
+        <div class="diag-item bad"><span class="di">✗</span> Sem pixel de rastreamento</div>
+        <div class="diag-item bad"><span class="di">✗</span> 100% dependente de quem já conhece</div>
+      </div>
+    </div>
+
+    <div class="brecha-list">
+      <div class="brecha-title">⚡ Oportunidades identificadas</div>
+      <div class="brecha-item"><div class="brecha-num">1</div>Show de sábado sem campanha — urgência semanal renovável desperdiçada toda semana</div>
+      <div class="brecha-item"><div class="brecha-num">2</div>Espaço temático sem fotos no GMN — o maior diferencial está invisível para busca local</div>
+      <div class="brecha-item"><div class="brecha-num">3</div>Zero concorrentes anunciando no Meta em Pinhalzinho — quem entrar primeiro domina sem briga</div>
+      <div class="brecha-item"><div class="brecha-num">4</div>Gastrobar com ambiente filmável = criativo de vídeo que converte muito melhor que foto</div>
+      <div class="brecha-item"><div class="brecha-num">5</div>Raio de 30km alcança cidades vizinhas — público novo que nunca ouviu falar do lugar</div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-label">02 · Estratégia</div>
+    <h2 class="sec-title">Show toda semana = <span>campanha toda semana</span></h2>
+    <p class="sec-body">A programação semanal transforma o American Texas num dos clientes mais interessantes pra Meta Ads: tem urgência nova toda semana.</p>
+    <div class="divider"></div>
+
+    <div class="campaign-layout">
+      <div class="camp-block">
+        <div class="camp-block-label">Objetivo</div>
+        <div class="camp-block-title">Tráfego para o local + engajamento</div>
+        <p style="font-size:0.88rem;color:var(--grimper-muted);font-weight:300;line-height:1.65;">Diferente de delivery, o objetivo aqui é levar a pessoa até o bar. Anúncio de show toda quinta/sexta cria urgência real pra converter no sábado. Campanha evergreen mantém o fluxo de terça a domingo.</p>
+        <div class="orcamento-badge">
+          <span style="font-size:1.5rem">💰</span>
+          <div>
+            <div class="orcamento-value">R$15–25/dia <span>em mídia paga</span></div>
+            <div style="font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:2px;">investimento mínimo sugerido</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="camp-block">
+        <div class="camp-block-label">Público Alvo</div>
+        <div class="camp-block-title">Quem quer sair em Pinhalzinho e região</div>
+        <div style="margin-bottom:12px;">
+          <span class="audience-pill">📍 Raio 30km</span>
+          <span class="audience-pill">👥 20–45 anos</span>
+          <span class="audience-pill">🍔 Burger artesanal</span>
+          <span class="audience-pill">🍺 Chopp & cerveja</span>
+          <span class="audience-pill">🎵 Shows ao vivo</span>
+          <span class="audience-pill">🎉 Vida noturna</span>
+        </div>
+        <p style="font-size:0.8rem;color:var(--grimper-muted);font-weight:300;line-height:1.6;">Raio de 30km inclui cidades vizinhas — pessoas que buscam um programa diferente no sábado à noite</p>
+      </div>
+
+      <div class="camp-block">
+        <div class="camp-block-label">Estrutura CBO</div>
+        <div class="conjuntos">
+          <div class="conjunto semanal">
+            <div class="conjunto-label">🎤 Conjunto 1 · Semanal — Show de sábado</div>
+            <div class="conjunto-name">Campanha renovada toda semana</div>
+            <div class="conjunto-desc">Anúncio novo toda quinta/sexta com artista e programação. Urgência real: "hoje é sábado, tem show". Formato ideal: Reels curto do ambiente</div>
+          </div>
+          <div class="conjunto">
+            <div class="conjunto-label">Conjunto 2 · Evergreen</div>
+            <div class="conjunto-name">Burger + ambiente Texas + chopp</div>
+            <div class="conjunto-desc">Campanha permanente apresentando o conceito do lugar — para quem nunca ouviu falar do American Texas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="camp-block">
+        <div class="camp-block-label">Criativo Sugerido</div>
+        <div class="criativo-box">
+          <div class="criativo-format">🎬 Reels 15s do ambiente · Feed + Stories</div>
+          <div class="criativo-hook">"Um pedaço do Texas aqui em Pinhalzinho. Todo sábado tem show ao vivo 🎤🤠 — vem!"</div>
+          <div class="criativo-desc">Espaço temático filmado, chopp sendo servido, show ao vivo. Ambiente é o produto aqui — vídeo converte muito mais que foto. Provavelmente já tem conteúdo no Instagram.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-label">03 · Potencial</div>
+    <h2 class="sec-title">O que é <span>possível alcançar</span> em 30 dias</h2>
+    <p class="sec-body">Restaurante tem conversão diferente de e-commerce — a pessoa não decide na hora, mas quando vai, gasta bem.</p>
+    <div class="divider"></div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-icon">👁️</span>
+        <div class="metric-value">7k–18k</div>
+        <div class="metric-label">Pessoas alcançadas por mês</div>
+        <div class="metric-trend">↑ raio 30km</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:80%"></div></div>
+      </div>
+      <div class="metric-card">
+        <span class="metric-icon">👆</span>
+        <div class="metric-value">200–450</div>
+        <div class="metric-label">Cliques e visualizações</div>
+        <div class="metric-trend">↑ por mês</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:60%"></div></div>
+      </div>
+      <div class="metric-card">
+        <span class="metric-icon">🍔</span>
+        <div class="metric-value">40–100</div>
+        <div class="metric-label">Visitas geradas</div>
+        <div class="metric-trend">↑ estimado/mês</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:50%"></div></div>
+      </div>
+      <div class="metric-card">
+        <span class="metric-icon">💰</span>
+        <div class="metric-value">R$12–28</div>
+        <div class="metric-label">Custo por visita estimada</div>
+        <div class="metric-trend">↓ estimado</div>
+        <div class="metric-bar-wrap"><div class="metric-bar" style="width:42%"></div></div>
+      </div>
+    </div>
+
+    <div class="ticket-bar">
+      <div class="ticket-icon">🍻</div>
+      <div>
+        <div class="ticket-title">Mesa de 4 pessoas vale muito mais que um lead de confeitaria</div>
+        <div class="ticket-body">No sábado com show, uma mesa de 4 pessoas facilmente consome</div>
+        <div class="ticket-value">R$200 – R$400 na conta</div>
+        <div class="ticket-body" style="margin-top:4px;">10 mesas novas por mês via campanha = R$2.000–4.000 em receita incremental</div>
+      </div>
+    </div>
+
+    <div class="potential-note" style="margin-top:20px;">
+      ⚠️ Visitas são mais difíceis de rastrear que cliques — usamos aumento de movimento e faturamento como indicador. Estimativas conservadoras baseadas em bares/restaurantes no interior de SP com perfil similar.
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-label">04 · Entregáveis</div>
+    <h2 class="sec-title">Tudo que será <span>criado e configurado</span></h2>
+    <p class="sec-body">Do mais urgente ao complementar — sem mexer no que já funciona.</p>
+    <div class="divider"></div>
+    <div class="checklist-grid">
+      <div class="check-item">
+        <div class="check-prio prio-high">1</div>
+        <div><div class="check-title">Campanha Meta Ads — Show sábado</div><div class="check-desc">Urgência semanal renovável — anúncio novo toda quinta/sexta</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-prio prio-high">2</div>
+        <div><div class="check-title">Campanha Meta Ads — Evergreen</div><div class="check-desc">Burger + ambiente + chopp — apresentar o conceito para quem não conhece</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-prio prio-high">3</div>
+        <div><div class="check-title">GMN com fotos do espaço</div><div class="check-desc">Ambiente Texas fotografado — diferencial mais forte, totalmente invisível hoje</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-prio prio-medium">4</div>
+        <div><div class="check-title">Landing Page temática</div><div class="check-desc">Substituir Linktree por página com cardápio, ambiente e identidade própria</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-prio prio-medium">5</div>
+        <div><div class="check-title">Criativo em vídeo do ambiente</div><div class="check-desc">Reels do espaço filmado — converte muito melhor que foto para gastrobar</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-label">05 · Processo</div>
+    <h2 class="sec-title">Como vai <span>funcionar na prática</span></h2>
+    <p class="sec-body">Quatro etapas — começamos pela campanha do show que já tem urgência essa semana.</p>
+    <div class="divider"></div>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">1</div>
+        <span class="step-icon">🤝</span>
+        <div class="step-title">Alinhamento</div>
+        <p class="step-desc">Conversa rápida para entender a programação, os criativos existentes e o público que já frequenta</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <span class="step-icon">⚙️</span>
+        <div class="step-title">Estrutura</div>
+        <p class="step-desc">GMN com fotos, campanha configurada, pixel instalado — em até 5 dias úteis</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <span class="step-icon">🚀</span>
+        <div class="step-title">Lançamento</div>
+        <p class="step-desc">Primeiro anúncio do show de sábado no ar. Acompanhamento e ajustes diários</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <span class="step-icon">📊</span>
+        <div class="step-title">Resultado</div>
+        <p class="step-desc">Relatório em 30 dias com métricas reais. Só então conversamos sobre continuar</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-block reveal">
+    <div class="cta-inner">
+      <div class="cta-for">Uma proposta exclusiva para</div>
+      <h2 class="cta-title">American <em>Texas</em><br>— o próximo show já é oportunidade 🎤</h2>
+      <p class="cta-sub">Primeiro mês sem custo de serviço. Você só paga quando os resultados aparecerem. Sem risco, sem contrato assustador.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/5511945373456?text=Ol%C3%A1%20Christian%2C%20vi%20a%20proposta%20da%20Grimper%20para%20o%20American%20Texas%20e%20quero%20saber%20mais!" class="btn-wa" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar com Christian
+        </a>
+        <a href="mailto:christian.amado97@gmail.com?subject=Proposta%20Grimper%20-%20American%20Texas%20Burger" class="btn-email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Enviar e-mail
+        </a>
+      </div>
+      <div class="cta-note">christian.amado97@gmail.com · (11) 94537-3456 · Grimper.Digital</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-logo">Grimper<span>.Digital</span></div>
+    <div class="footer-note">Proposta preparada exclusivamente para o American Texas Burger · 2026</div>
+    <div class="footer-note">grimper: do francês, escalar.</div>
+  </div>
+</div>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
